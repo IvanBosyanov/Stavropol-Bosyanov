@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -37,6 +37,20 @@ def image_mars():
                     <p>Вот она какая, красная планета.</p>
                   </body>
                 </html>"""
+
+
+@app.route('/answer')
+@app.route('/auto_answer')
+def answer():
+    lib = {'title': 'Марс',
+           'surname': 'Watny',
+           'name': 'Mark',
+           'education': 'выше среднего',
+           'profession': 'штурман марсохода',
+           'sex': 'male',
+           'motivation': 'Всегда мечтал застрять на Марсе!',
+           'ready': True}
+    return render_template('index.html', **lib)
 
 
 if __name__ == '__main__':
